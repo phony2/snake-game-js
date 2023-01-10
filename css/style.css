@@ -1,0 +1,14 @@
+body{
+	background-image: url(../img/background.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom;
+    height: calc(100vh - 100px);
+    background-color: #7b9d01;
+}
+
+canvas {
+  display: block;
+  margin: 0 auto;
+}
