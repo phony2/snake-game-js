@@ -190,13 +190,11 @@ function drawGame() {
 	//новые координаты головы
 	const newHead = { x: snakeX, y: snakeY };
 	
-	//добавление новой головы в начало массива
-	snake.unshift(newHead);
-	
 	//вызов функции проверки пересекаются ли координаты головы с туловищем
 	eatTail(newHead, snake);
 	
-	
+	//добавление новой головы в начало массива
+	snake.unshift(newHead);
 }
 
 let game = setInterval(drawGame, speed);
