@@ -17,27 +17,27 @@ playingArea.src = "img/area.png";
 /**
 * Создаем объект картинки и загружаем картинку еды
 */
-const foodImage=new Image();
-foodImage.src="img/food.png";
+const foodImage = new Image();
+foodImage.src = "img/food.png";
 
 // скорость игры в милисекундах
-let speed=600;
+let speed = 600;
 
 // размер одной клетки игрового поля
-let box=32;
+let box = 32;
 
 // позиция еды
-let food={x:5*box,y:5*box}
+let food = { x: 5 * box, y: 5 * box}
 
 /**
 * Функция для отрисовки игры
 */
 function drawGame() {
 	//отрисовка фона игрового поля
-	ctx.drawImage(playingArea,0,0);
+	ctx.drawImage(playingArea, 0, 0);
 	
 	// отрисовка еды
-	ctx.drawImage(foodImage,food.x,food.y);
+	ctx.drawImage(foodImage, food.x, food.y);
 }
 
-let game=setInterval(drawGame,speed);
+let game = setInterval(drawGame, speed);
