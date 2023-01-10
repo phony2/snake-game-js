@@ -100,9 +100,18 @@ function generatingCoordinates() {
   };
 }
 
+/**
+* Функция окончания игры
+*/
 function gameOver() {
   clearInterval(game);
   alert(`Игра закончилась со счетом: ${score}. Для запуска игры сначала, перезагрузите страницу.`);
+}
+
+function eatTail(head, arr){
+	for(let i = 0; i < arr.length; i++) {
+		if (head.x == arr[i].x && head.y == arr[i].y) gameOver();
+	}
 }
 
 
@@ -163,6 +172,11 @@ function drawGame() {
 	if(snakeX == toxic.x && snakeY == toxic.y) {
 		gameOver();
 	}
+	
+	//конец игры, если змейка вышла за рамки игрового поля
+	if(snakeX < box || snakeX > box * 17 || snakeY < box * 3 || snakeY > box * 17) {
+		gameOver();
+	}
 		
 	//меняем координаты головы в зависимости от направления
 	if (dir === "left") snakeX -= box;
@@ -172,8 +186,12 @@ function drawGame() {
 	
 	//новые координаты головы
 	const newHead = { x: snakeX, y: snakeY };
+	
 	//добавление новой головы в начало массива
 	snake.unshift(newHead);
+	
+	//вызов функции проверки пересекаются ли координаты головы с туловищем
+	eatTail(newHead, snake);
 	
 	
 }
