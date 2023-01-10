@@ -72,9 +72,14 @@ let dir;
 document.addEventListener("keydown", direction);
 
 /**
-*
+* Функция устанавливающая текущее направление взависимости от нажатой клавиши
 */
-function direction(event) {}
+function direction(event) {
+	if (event.keyCode == 37 && dir != "right") dir = "left";
+	else if (event.keyCode == 38 && dir != "down") dir = "up";
+	else if (event.keyCode == 39 && dir != "left") dir = "right";
+	else if (event.keyCode == 40 && dir != "up") dir = "down";
+}
 
 
 /**
@@ -92,6 +97,31 @@ function drawGame() {
 		if (snake.length === 1) ctx.drawImage(snakeImg, snake[i].x, snake[i].y);
 		else ctx.drawImage(i === 0 ? headImg : bodyImg, snake[i].x, snake[i].y);
 	}
+	
+	console.log(dir);
+	if (!dir) return;
+	
+	
+	
+	//запомним текущие координаты
+	let snakeX = snake[0].x;
+	let snakeY = snake[0].y;
+	
+	//удаление последнего элемента массива змейки
+	snake.pop();
+	
+	//меняем координаты головы в зависимости от направления
+	if (dir == "left") snakeX -= box;
+	if (dir == "right") snakeX += box;
+	if (dir == "up") snakeY -= box;
+	if (dir == "down") snakeY += box;
+	
+	//новые координаты головы
+	const newHead = { x: snakeX, y: snakeY };
+	//добавление новой головы в начало массива
+	snake.unshift(newHead);
+	
+	
 }
 
 let game = setInterval(drawGame, speed);
